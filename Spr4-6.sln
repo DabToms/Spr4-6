@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spr4-6", "Spr4-6\Spr4-6.csproj", "{8530D6C5-4811-47EE-87B1-22469C78758A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spr.Core", "Spr.Core\Spr.Core.csproj", "{4761CB9E-420C-4024-8B14-11576435A665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spr.Mongo", "Spr.Mongo\Spr.Mongo.csproj", "{F776AE79-D088-4EBF-A7C6-E03B04CACBD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spr.SqlServer", "Spr.SqlServer\Spr.SqlServer.csproj", "{6521D80D-C74D-4364-B8AD-121103103DD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spr.Oracle", "Spr.Oracle\Spr.Oracle.csproj", "{173FF414-97F6-43ED-9663-6980FF5EC068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spr.ObjectDB", "Spr.ObjectDB\Spr.ObjectDB.csproj", "{D0952E53-7D82-48C4-8FF2-88B7E5A831E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8530D6C5-4811-47EE-87B1-22469C78758A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8530D6C5-4811-47EE-87B1-22469C78758A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8530D6C5-4811-47EE-87B1-22469C78758A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8530D6C5-4811-47EE-87B1-22469C78758A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4761CB9E-420C-4024-8B14-11576435A665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4761CB9E-420C-4024-8B14-11576435A665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4761CB9E-420C-4024-8B14-11576435A665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4761CB9E-420C-4024-8B14-11576435A665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F776AE79-D088-4EBF-A7C6-E03B04CACBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F776AE79-D088-4EBF-A7C6-E03B04CACBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F776AE79-D088-4EBF-A7C6-E03B04CACBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F776AE79-D088-4EBF-A7C6-E03B04CACBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6521D80D-C74D-4364-B8AD-121103103DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6521D80D-C74D-4364-B8AD-121103103DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6521D80D-C74D-4364-B8AD-121103103DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6521D80D-C74D-4364-B8AD-121103103DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173FF414-97F6-43ED-9663-6980FF5EC068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173FF414-97F6-43ED-9663-6980FF5EC068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173FF414-97F6-43ED-9663-6980FF5EC068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173FF414-97F6-43ED-9663-6980FF5EC068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0952E53-7D82-48C4-8FF2-88B7E5A831E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0952E53-7D82-48C4-8FF2-88B7E5A831E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0952E53-7D82-48C4-8FF2-88B7E5A831E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0952E53-7D82-48C4-8FF2-88B7E5A831E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

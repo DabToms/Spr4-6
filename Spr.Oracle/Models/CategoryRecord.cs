@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Spr.Oracle.Models;
-internal class CategoryRecord
+
+[Table("Category")]
+[PrimaryKey(nameof(Id))]
+public class CategoryRecord
 {
     public CategoryRecord()
     {
@@ -14,6 +19,11 @@ internal class CategoryRecord
     public CategoryRecord(int id, string name, string desc)
     {
         this.Id = id;
+        this.Name = name;
+        this.Description = desc;
+    }
+    public CategoryRecord( string name, string desc)
+    {
         this.Name = name;
         this.Description = desc;
     }

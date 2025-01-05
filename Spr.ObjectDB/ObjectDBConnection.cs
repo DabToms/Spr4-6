@@ -1,12 +1,67 @@
 ﻿using Db4objects.Db4o;
+using Spr.Core;
 using Spr.ObjectDB.Models;
 using System;
 using System.Diagnostics;
 
 namespace Spr.ObjectDB;
 
-public class ObjectDBConnection
+public class ObjectDBConnection : BaseConnection<IObjectContainer>
 {
+
+    public ObjectDBConnection()
+        : base("Db4o")
+    {
+        this._client = Db4oEmbedded.OpenFile($"{Guid.NewGuid().ToString()}.data");
+    }
+
+    /// <inheritdoc />
+    protected override IEnumerable<object> CreateSamples(int count)
+    {
+        var categories = new List<Category>();
+        for (int i = 0; i < count; i++)
+        {
+            categories.Add(new Category(i, Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
+        }
+
+        return categories;
+    }
+
+    /// <inheritdoc />
+    protected override void TestInsert(IEnumerable<object> samples)
+    {
+        foreach (var cat in samples)
+        {
+            this._client.Store(cat);
+        }
+
+        this._client.Commit();
+    }
+
+    /// <inheritdoc />
+    protected override void TestUpdate(IEnumerable<object> samples)
+    {
+        foreach (var cat in samples)
+        {
+            ((Category)cat).Description = "Test update";
+            this._client.Store(cat);
+        }
+
+        this._client.Commit();
+    }
+
+    /// <inheritdoc />
+    protected override void TestDelete(IEnumerable<object> samples)
+    {
+        foreach (var cat in samples)
+        {
+            this._client.Delete(cat);
+        }
+
+        this._client.Commit();
+    }
+
+
     public void Test()
     {
         using (IObjectContainer db = Db4oEmbedded.OpenFile($"{Guid.NewGuid().ToString()}.data"))
@@ -60,5 +115,10 @@ public class ObjectDBConnection
 
             db.Close();
         }
+    }
+
+    public override void TestOperation()
+    {
+        throw new NotImplementedException();
     }
 }

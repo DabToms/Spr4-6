@@ -1,4 +1,5 @@
-﻿using Spr.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using Spr.Core;
 using Spr.SqlServer.Models;
 using System.Diagnostics;
 
@@ -6,7 +7,50 @@ namespace Spr.SqlServer;
 
 public class SqlServerConection : BaseConnection<TestContext>
 {
-    public override void Connect()
+
+    public SqlServerConection()
+        : base("Sql Server")
+    {
+        this._client = new TestContext();
+    }
+
+    /// <inheritdoc />
+    protected override IEnumerable<object> CreateSamples(int count)
+    {
+        var categories = new List<CategoryRecord>();
+        for (int i = 0; i < count; i++)
+        {
+            categories.Add(new CategoryRecord(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
+        }
+
+        return categories;
+    }
+
+    /// <inheritdoc />
+    protected override void TestInsert(IEnumerable<object> samples)
+    {
+        this._client.Category.AddRange((IEnumerable<CategoryRecord>)samples);
+        this._client.SaveChanges();
+    }
+
+    /// <inheritdoc />
+    protected override void TestUpdate(IEnumerable<object> samples)
+    {
+        this._client.Category.ExecuteUpdate(x => x.SetProperty(p => p.Description, "Test update"));
+        this._client.SaveChanges();
+    }
+
+    /// <inheritdoc />
+    protected override void TestDelete(IEnumerable<object> samples)
+    {
+        this._client.Category.RemoveRange((IEnumerable<CategoryRecord>)samples);
+        this._client.SaveChanges();
+    }
+
+
+
+    /// <inheritdoc />
+    public override void TestOperation()
     {
         this._client = new TestContext();
 

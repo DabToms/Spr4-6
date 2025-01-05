@@ -4,7 +4,7 @@
       "commandName": "Project",
       "environmentVariables": {
         "MONGODB_URI": "mongodb://admin:admin@localhost:27017/",
-        "SQLSERVER_URI": "Server=localhost;Initial Catalog=BazkiDanych;User ID=sa;Password=zse4%RDX;Encrypt=True;TrustServerCertificate=true;",,
+        "SQLSERVER_URI": "Server=localhost;Initial Catalog=BazkiDanych;User ID=sa;Password=zse4%RDX;Encrypt=True;TrustServerCertificate=true;",
         "ORACLE_URI": "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=free)));User Id=system;Password=admin;"
       }
     }

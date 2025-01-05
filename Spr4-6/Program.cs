@@ -19,51 +19,49 @@ internal class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
-
+        Console.WriteLine("Testing database operations.");
+        var tasks = new List<Task>();
         try
         {
-            Console.WriteLine("\nTesting Oracle.");
-            var oracleDB = new OracleDBConnection();
-            oracleDB.Connect();
-        }
-        catch (System.Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-
-        try
-        {
-            Console.WriteLine("\nTesting MongoDB.");
-            var mongo = new MongodbConnection();
-            mongo.Connect();
-            mongo.Test();
-        }
-        catch (System.Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-
-        try
-        {
-            Console.WriteLine("\nTesting Sql server.");
-            var sqlserver = new SqlServerConection();
-            sqlserver.Connect();
-        }
-        catch (System.Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-
-        try
-        {
-            Console.WriteLine("\nTesting Db4o DB.");
             var objectDB = new ObjectDBConnection();
-            objectDB.Test();
+            tasks.Add(Task.Factory.StartNew(new Action(() => { objectDB.TestOperations(); })));
         }
         catch (System.Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
+
+        try
+        {
+            var mongo = new MongodbConnection();
+            tasks.Add(Task.Factory.StartNew(new Action(() => { mongo.TestOperations(); })));
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        try
+        {
+            var sqlserver = new SqlServerConection();
+            tasks.Add(Task.Factory.StartNew(new Action(() => { sqlserver.TestOperations(); })));
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        try
+        {
+            var oracleDB = new OracleDBConnection();
+            tasks.Add(Task.Factory.StartNew(new Action(() => { oracleDB.TestOperations(); })));
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        tasks.ForEach(t => t.Wait());
 
         Console.WriteLine("\nBye, World!");
 

@@ -35,6 +35,12 @@ namespace Spr.Oracle
         }
 
         /// <inheritdoc />
+        protected override void TestReadAll()
+        {
+            this._client.Category.ToList();
+        }
+
+        /// <inheritdoc />
         protected override void TestUpdate(IEnumerable<object> samples)
         {
             this._client.Category.ExecuteUpdate(x => x.SetProperty(p => p.Description, "Test update"));
@@ -46,6 +52,21 @@ namespace Spr.Oracle
         {
             this._client.Category.RemoveRange((IEnumerable<CategoryRecord>)samples);
             this._client.SaveChanges();
+        }
+
+        protected override void TestReadFiltered(object obj)
+        {
+            this._client.Category.Where(x => x.Name == ((CategoryRecord)obj).Name).ToList();
+        }
+
+        protected override void CreateIndex()
+        {
+            this._client.Database.ExecuteSqlRaw("CREATE INDEX IX_CATEGORY_NAME ON \"Category\"(\"Name\")");
+        }
+
+        protected override void DropIndexes()
+        {
+            this._client.Database.ExecuteSqlRaw("DROP INDEX IX_CATEGORY_NAME");
         }
 
         /// <inheritdoc />

@@ -8,11 +8,10 @@ namespace Spr.ObjectDB;
 
 public class ObjectDBConnection : BaseConnection<IObjectContainer>
 {
-
     public ObjectDBConnection()
         : base("Db4o")
     {
-        this._client = Db4oEmbedded.OpenFile($"{Guid.NewGuid().ToString()}.data");
+        this._client = Db4oFactory.OpenFile($"{Guid.NewGuid().ToString()}.data");
     }
 
     /// <inheritdoc />
@@ -36,6 +35,18 @@ public class ObjectDBConnection : BaseConnection<IObjectContainer>
         }
 
         this._client.Commit();
+    }
+
+    /// <inheritdoc />
+    protected override void TestReadAll()
+    {
+        var itemsQuery = this._client.Query<Category>();
+    }
+
+    /// <inheritdoc />
+    protected override void TestReadFiltered(object obj)
+    {
+        var itemsQuery = this._client.Query<Category>(x => x.Name == ((Category)obj).Name);
     }
 
     /// <inheritdoc />
@@ -120,5 +131,15 @@ public class ObjectDBConnection : BaseConnection<IObjectContainer>
     public override void TestOperation()
     {
         throw new NotImplementedException();
+    }
+
+    protected override void CreateIndex()
+    {
+        Db4oFactory.Configure().ObjectClass(typeof(Category)).ObjectField("Name").Indexed(true);
+    }
+
+    protected override void DropIndexes()
+    {
+        Db4oFactory.Configure().ObjectClass(typeof(Category)).ObjectField("Name").Indexed(false);
     }
 }

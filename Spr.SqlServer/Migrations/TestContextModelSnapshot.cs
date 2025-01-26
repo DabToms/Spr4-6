@@ -9,7 +9,7 @@ using Spr.SqlServer;
 
 namespace Spr.SqlServer.Migrations
 {
-    [DbContext(typeof(TestContext))]
+    [DbContext(typeof(SqlServerContext))]
     partial class TestContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

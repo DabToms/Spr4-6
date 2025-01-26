@@ -11,8 +11,8 @@ using Spr.SqlServer;
 namespace Spr.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20250105100813_AddCategoryRecord")]
-    partial class AddCategoryRecord
+    [Migration("20250108162718_oras87")]
+    partial class oras87
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace Spr.SqlServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -48,9 +48,51 @@ public class MongodbConnection : BaseConnection<MongoClient>
     }
 
     /// <inheritdoc />
+    protected override void TestReadAll()
+    {
+        // var client = new MongoClient(this.connectionString);
+        var collection = this._client.GetDatabase("test").GetCollection<CategoryDocument>("Categories");
+
+        var filter = Builders<CategoryDocument>.Filter.Empty;
+        var document = collection.Find(filter);
+        foreach (var doc in document.ToEnumerable())
+        {
+        }
+    }
+
+    /// <inheritdoc />
+    protected override void TestReadFiltered(object obj)
+    {
+        // var client = new MongoClient(this.connectionString);
+        var collection = this._client.GetDatabase("test").GetCollection<CategoryDocument>("Categories");
+
+        var filter = Builders<CategoryDocument>.Filter.Eq(x => x.Name, ((CategoryDocument)obj).Name);
+        var document = collection.Find(filter);
+        foreach (var doc in document.ToEnumerable())
+        {
+        }
+    }
+
+    /// <inheritdoc />
+    protected override void CreateIndex()
+    {
+        var collection = this._client.GetDatabase("test").GetCollection<CategoryDocument>("Categories");
+        var indexModel = new CreateIndexModel<CategoryDocument>(Builders<CategoryDocument>.IndexKeys.Ascending(m => m.Name));
+        collection.Indexes.CreateOne(indexModel);
+        collection.Indexes.DropAll();
+    }
+
+    /// <inheritdoc />
+    protected override void DropIndexes()
+    {
+        var collection = this._client.GetDatabase("test").GetCollection<CategoryDocument>("Categories");
+        collection.Indexes.DropAll();
+    }
+
+    /// <inheritdoc />
     protected override void TestUpdate(IEnumerable<object> samples)
     {
-       // var client = new MongoClient(this.connectionString);
+        // var client = new MongoClient(this.connectionString);
         var collection = this._client.GetDatabase("test").GetCollection<CategoryDocument>("Categories");
 
         var filter = Builders<CategoryDocument>.Filter.Empty;
@@ -61,7 +103,7 @@ public class MongodbConnection : BaseConnection<MongoClient>
     /// <inheritdoc />
     protected override void TestDelete(IEnumerable<object> samples)
     {
-       // var client = new MongoClient(this.connectionString);
+        // var client = new MongoClient(this.connectionString);
         var collection = this._client.GetDatabase("test").GetCollection<CategoryDocument>("Categories");
 
         var filter = Builders<CategoryDocument>.Filter.Empty;

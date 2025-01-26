@@ -10,7 +10,7 @@ using Spr.SqlServer;
 
 namespace Spr.SqlServer.Migrations
 {
-    [DbContext(typeof(TestContext))]
+    [DbContext(typeof(SqlServerContext))]
     [Migration("20250105101242_AddCategoryRecoh")]
     partial class AddCategoryRecoh
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Spr.ObjectDB.Models;
-internal class Category
+public class Category
 {
     public Category()
     {

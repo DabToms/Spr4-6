@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Spr.SqlServer;
-public class TestContext: DbContext
+public class SqlServerContext: DbContext
 {
     public DbSet<CategoryRecord> Category { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,5 +29,4 @@ public class TestContext: DbContext
         modelBuilder.Entity<CategoryRecord>().HasKey(e => e.Id);
         base.OnModelCreating(modelBuilder);
     }
-
 }
